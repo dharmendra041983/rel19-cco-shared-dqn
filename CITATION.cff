@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "Please cite this software repository. The manuscript citation will be added after publication."
+title: "Deployment-Aware Shared DQN for Rel-19 Coverage and Capacity Optimization"
+type: software
+authors:
+  - family-names: "Kumar"
+    given-names: "Dharmendra"
+version: "1.0.0-submission"
+date-released: "2026-08-02"
+repository-code: "https://github.com/dharmendra041983/rel19-cco-shared-dqn"
+license: "BSD-3-Clause"
+keywords:
+  - "5G-Advanced"
+  - "NG-RAN"
+  - "coverage and capacity optimization"
+  - "deep reinforcement learning"
+  - "safe reinforcement learning"
+  - "SON coexistence"

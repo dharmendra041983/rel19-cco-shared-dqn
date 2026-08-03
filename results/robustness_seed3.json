@@ -1,0 +1,210 @@
+{
+  "config": {
+    "seed": 3,
+    "episodes": 250
+  },
+  "robustness": {
+    "nominal": {
+      "dqn": {
+        "coverage": 0.7907187499999999,
+        "mean_tput_mbps": 1.7809973580647676,
+        "p5_tput_mbps": 0.35863278371662405,
+        "mean_se": 2.731620113103302
+      },
+      "ppo": {
+        "coverage": 0.8142708333333334,
+        "mean_tput_mbps": 1.8054824538246397,
+        "p5_tput_mbps": 0.28930982254098003,
+        "mean_se": 2.9108905577313515
+      },
+      "paired_dqn_minus_ppo_coverage_pp": -2.3552083333333473,
+      "paired_dqn_minus_ppo_mean_tput_mbps": -0.024485095759872122
+    },
+    "high_load": {
+      "dqn": {
+        "coverage": 0.7942222222222223,
+        "mean_tput_mbps": 1.2148507332384961,
+        "p5_tput_mbps": 0.25219822510683276,
+        "mean_se": 2.7148494232448495
+      },
+      "ppo": {
+        "coverage": 0.8127986111111111,
+        "mean_tput_mbps": 1.239628560250423,
+        "p5_tput_mbps": 0.21261848268489694,
+        "mean_se": 2.8448170085683047
+      },
+      "paired_dqn_minus_ppo_coverage_pp": -1.8576388888888795,
+      "paired_dqn_minus_ppo_mean_tput_mbps": -0.024777827011926767
+    },
+    "high_hotspot": {
+      "dqn": {
+        "coverage": 0.8061250000000002,
+        "mean_tput_mbps": 1.7561248019981186,
+        "p5_tput_mbps": 0.3030105527266772,
+        "mean_se": 2.7701829880622935
+      },
+      "ppo": {
+        "coverage": 0.8305937500000001,
+        "mean_tput_mbps": 1.7990358244050644,
+        "p5_tput_mbps": 0.25463461053282865,
+        "mean_se": 2.9592816747234654
+      },
+      "paired_dqn_minus_ppo_coverage_pp": -2.446874999999993,
+      "paired_dqn_minus_ppo_mean_tput_mbps": -0.042911022406945776
+    },
+    "severe_shadowing": {
+      "dqn": {
+        "coverage": 0.8536354166666666,
+        "mean_tput_mbps": 2.0963571394689366,
+        "p5_tput_mbps": 0.45992100768447547,
+        "mean_se": 3.111878859588467
+      },
+      "ppo": {
+        "coverage": 0.8545729166666668,
+        "mean_tput_mbps": 2.0950820691228103,
+        "p5_tput_mbps": 0.3959420896781897,
+        "mean_se": 3.2458589752401372
+      },
+      "paired_dqn_minus_ppo_coverage_pp": -0.09375000000001465,
+      "paired_dqn_minus_ppo_mean_tput_mbps": 0.0012750703461263946
+    }
+  },
+  "shield_sensitivity": {
+    "delta_1pp": {
+      "delta_pp": 1.0,
+      "dqn": {
+        "evaluation": {
+          "coverage": 0.7996354166666668,
+          "mean_tput_mbps": 1.7511982427508805,
+          "p5_tput_mbps": 0.3426551100405459,
+          "mean_se": 2.6425604174356274
+        },
+        "audit": {
+          "candidate_violation_rate_pct": 27.083333333333332,
+          "applied_violation_rate_pct": 0.0,
+          "max_candidate_drop_pp": 5.999999999999995,
+          "mean_candidate_drop_pp": 0.8406249999999997,
+          "rollbacks_per_100_steps": 27.083333333333332
+        }
+      },
+      "ppo": {
+        "evaluation": {
+          "coverage": 0.81928125,
+          "mean_tput_mbps": 1.8043245775700363,
+          "p5_tput_mbps": 0.2799363764571369,
+          "mean_se": 2.82545987736987
+        },
+        "audit": {
+          "candidate_violation_rate_pct": 4.791666666666667,
+          "applied_violation_rate_pct": 0.0,
+          "max_candidate_drop_pp": 4.0000000000000036,
+          "mean_candidate_drop_pp": 0.14479166666666674,
+          "rollbacks_per_100_steps": 4.791666666666667
+        }
+      },
+      "paired_dqn_minus_ppo_coverage_pp": -1.964583333333314
+    },
+    "delta_2pp": {
+      "delta_pp": 2.0,
+      "dqn": {
+        "evaluation": {
+          "coverage": 0.7998124999999999,
+          "mean_tput_mbps": 1.7755831086019842,
+          "p5_tput_mbps": 0.3315829131514532,
+          "mean_se": 2.693241958536845
+        },
+        "audit": {
+          "candidate_violation_rate_pct": 6.666666666666667,
+          "applied_violation_rate_pct": 0.0,
+          "max_candidate_drop_pp": 5.499999999999994,
+          "mean_candidate_drop_pp": 0.3177083333333333,
+          "rollbacks_per_100_steps": 6.666666666666667
+        }
+      },
+      "ppo": {
+        "evaluation": {
+          "coverage": 0.8191666666666667,
+          "mean_tput_mbps": 1.8196014879144675,
+          "p5_tput_mbps": 0.2763920415531515,
+          "mean_se": 2.8517589254856808
+        },
+        "audit": {
+          "candidate_violation_rate_pct": 1.0416666666666667,
+          "applied_violation_rate_pct": 0.0,
+          "max_candidate_drop_pp": 4.0000000000000036,
+          "mean_candidate_drop_pp": 0.10312500000000005,
+          "rollbacks_per_100_steps": 1.0416666666666667
+        }
+      },
+      "paired_dqn_minus_ppo_coverage_pp": -1.9354166666666783
+    },
+    "delta_3pp": {
+      "delta_pp": 3.0,
+      "dqn": {
+        "evaluation": {
+          "coverage": 0.7968124999999998,
+          "mean_tput_mbps": 1.7773178389169393,
+          "p5_tput_mbps": 0.3311082519680038,
+          "mean_se": 2.700591629407159
+        },
+        "audit": {
+          "candidate_violation_rate_pct": 0.20833333333333334,
+          "applied_violation_rate_pct": 0.0,
+          "max_candidate_drop_pp": 3.499999999999992,
+          "mean_candidate_drop_pp": 0.09687499999999996,
+          "rollbacks_per_100_steps": 0.20833333333333334
+        }
+      },
+      "ppo": {
+        "evaluation": {
+          "coverage": 0.8191666666666667,
+          "mean_tput_mbps": 1.8196014879144675,
+          "p5_tput_mbps": 0.2763920415531515,
+          "mean_se": 2.8517589254856808
+        },
+        "audit": {
+          "candidate_violation_rate_pct": 0.0,
+          "applied_violation_rate_pct": 0.0,
+          "max_candidate_drop_pp": 2.500000000000002,
+          "mean_candidate_drop_pp": 0.08020833333333335,
+          "rollbacks_per_100_steps": 0.0
+        }
+      },
+      "paired_dqn_minus_ppo_coverage_pp": -2.2354166666666897
+    },
+    "delta_5pp": {
+      "delta_pp": 5.0,
+      "dqn": {
+        "evaluation": {
+          "coverage": 0.7967604166666665,
+          "mean_tput_mbps": 1.777388265565584,
+          "p5_tput_mbps": 0.3311196448136062,
+          "mean_se": 2.700797510797969
+        },
+        "audit": {
+          "candidate_violation_rate_pct": 0.0,
+          "applied_violation_rate_pct": 0.0,
+          "max_candidate_drop_pp": 3.499999999999992,
+          "mean_candidate_drop_pp": 0.09166666666666663,
+          "rollbacks_per_100_steps": 0.0
+        }
+      },
+      "ppo": {
+        "evaluation": {
+          "coverage": 0.8191666666666667,
+          "mean_tput_mbps": 1.8196014879144675,
+          "p5_tput_mbps": 0.2763920415531515,
+          "mean_se": 2.8517589254856808
+        },
+        "audit": {
+          "candidate_violation_rate_pct": 0.0,
+          "applied_violation_rate_pct": 0.0,
+          "max_candidate_drop_pp": 2.500000000000002,
+          "mean_candidate_drop_pp": 0.08020833333333335,
+          "rollbacks_per_100_steps": 0.0
+        }
+      },
+      "paired_dqn_minus_ppo_coverage_pp": -2.2406250000000183
+    }
+  }
+}

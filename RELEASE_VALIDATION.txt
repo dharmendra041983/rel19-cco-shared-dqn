@@ -1,0 +1,12 @@
+Code-only release validation
+============================
+
+- Exact requested folder structure: PASS
+- Paper PDF and LaTeX source excluded: PASS
+- Required experiment scripts included: PASS
+- Archived aggregate and per-seed JSON files included: PASS
+- Final Figure 2 and Figure 3 vector PDFs included: PASS
+- Python syntax validation: PASS
+- JSON readability and finite-value checks: PASS
+- GPU requirement: none
+- Wall-clock training time: not claimed
