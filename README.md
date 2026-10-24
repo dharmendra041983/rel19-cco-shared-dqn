@@ -1,117 +1,43 @@
-# rel19-cco-shared-dqn
+# Multi-cell coverage optimization: VCC code revision
 
-Code and reproducibility materials accompanying the manuscript
-**“Deployment-Aware Shared DQN for Rel-19 Coverage and Capacity
-Optimization: Transfer, Safety, and SON Coexistence.”**
+Source code for **Shared Deep Q-Learning for Multi-Cell Coverage Optimization:
+Transfer and Action-Screening Limits**, by Dharmendra Kumar.
 
-The manuscript is under review. This repository intentionally contains the
-code, machine-readable results, and figure-generation materials only; it does
-not include the submitted paper PDF.
+Start with [VCC_README.md](VCC_README.md) for the exact dependencies, fixed seed
+schedule, experiment order, and commands to regenerate the study outputs.
 
-All network realizations and KPI samples are generated synthetically by the
-included simulator. No proprietary operator, customer, employer, or
-production-network data is included.
+This revision publishes implementation code, experiment configurations, numerical
+checks, and result-generation scripts. New raw result files, run logs, trained
+checkpoints, and manuscript files are not included in this public update.
+The scripts generate results and checkpoints locally under `vcc_results/`, and
+create figure/table files under `manuscript/`.
 
-## Contents
+| Component | Source |
+| --- | --- |
+| Shared DQN, graph DQN, VDN, PPO, and topology-transfer experiments | [vcc_experiments.py](vcc_experiments.py) |
+| Frozen-policy oracle/learned-gate audit | [vcc_safety.py](vcc_safety.py) |
+| Sum/mean VDN training controls | [vcc_ablations.py](vcc_ablations.py) |
+| Calibration-population and margin sweep | [vcc_margin_sweep.py](vcc_margin_sweep.py) |
+| Native ns-3 propagation-kernel sensitivity | [vcc_ns3_validation.py](vcc_ns3_validation.py), [validation/](validation/) |
+| Figure, table, and statistical-summary generation | [scripts/build_vcc_results.py](scripts/build_vcc_results.py), [scripts/build_vcc_ablations.py](scripts/build_vcc_ablations.py) |
+| Numerical implementation checks | [scripts/validate_vcc.py](scripts/validate_vcc.py) |
+| Dependency versions | [requirements_vcc.txt](requirements_vcc.txt) |
 
-```text
-rel19-cco-shared-dqn/
-├── README.md
-├── LICENSE
-├── requirements.txt
-├── environment.yml
-├── cco_experiments_corrected.py
-├── ppo_safety_scale_experiments.py
-├── robustness_experiments.py
-├── scripts/
-│   ├── generate_figures.py
-│   ├── aggregate_results.py
-│   └── verify_release.py
-├── results/
-│   ├── original_five_seed_aggregated.json
-│   ├── additional_ppo_safety_scale_aggregated.json
-│   ├── robustness_aggregated.json
-│   ├── robustness_seed0.json
-│   ├── robustness_seed1.json
-│   ├── robustness_seed2.json
-│   ├── robustness_seed3.json
-│   ├── robustness_seed4.json
-│   └── derived_strengthening_statistics.json
-├── figures/
-│   ├── figure2_sample_efficiency.pdf
-│   └── figure3_coexistence.pdf
-├── CITATION.cff
-└── RELEASE_VALIDATION.txt
-```
+All network inputs are synthetic. No proprietary operator, customer, employer,
+or production-network data is used. The simulator retains a simplified antenna,
+association, interference, and scheduler abstraction. Native ns-3 checks cover
+propagation components, not a full NR packet stack or field validation. The
+learned action gate is not a deployment safety guarantee.
 
-## Requirements
+## Historical IPCCC materials
 
-- Python 3.10 or newer
-- NumPy
-- Matplotlib
-- CPU execution; no GPU is required
-
-Install with pip:
-
-```bash
-python -m venv .venv
-# Linux/macOS:
-source .venv/bin/activate
-# Windows PowerShell:
-# .venv\Scripts\Activate.ps1
-
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
-```
-
-Or with Conda:
-
-```bash
-conda env create -f environment.yml
-conda activate rel19-cco-paper
-```
-
-## Full experiment commands
-
-Run from the repository root:
-
-```bash
-python cco_experiments_corrected.py --exp all --seeds 0,1,2,3,4
-python ppo_safety_scale_experiments.py --seeds 0,1,2,3,4
-python robustness_experiments.py --seeds 0,1,2,3,4
-```
-
-The archived JSON files in `results/` are the machine-readable outputs used
-for the reported five-seed analyses.
-
-## Regenerate Figures 2 and 3
-
-```bash
-python scripts/generate_figures.py
-```
-
-The script reads the archived aggregate JSON files in `results/` and writes
-the updated vector PDFs to `figures/`.
-
-## Verify the package
-
-```bash
-python scripts/verify_release.py
-```
-
-## Notes on timing
-
-The repository does not claim a wall-clock training duration. Policy-forward
-latency is not end-to-end control-loop latency; it excludes simulator,
-telemetry, feature-construction, communication, and actuation delays.
+The original public files under `results/` and `figures/` remain unchanged.
+They belong to the earlier IPCCC evaluation and are not the revised VCC results.
+The historical implementation is available at commit
+`336fba183de6beef5ad30d87f31446c96e6d125d`. The current PPO script corrects
+gradient averaging; reproducing the old PPO numbers requires that base commit.
 
 ## License and citation
 
-The code is released under the BSD 3-Clause License. Citation metadata is in
-`CITATION.cff`.
-
-Repository:
-
-```text
-https://github.com/dharmendra041983/rel19-cco-shared-dqn
-```
+The software uses the [BSD 3-Clause License](LICENSE). Software citation metadata
+is in [CITATION.cff](CITATION.cff). No publication acceptance is claimed.

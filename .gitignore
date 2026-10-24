@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+*.log
+.venv/
+/vcc_results/
+/manuscript/
+/ns3_runtime/
+/validation/ns3_bridge.so

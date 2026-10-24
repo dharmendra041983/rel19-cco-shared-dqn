@@ -1,12 +1,11 @@
 cff-version: 1.2.0
 message: "Please cite this software repository. The manuscript citation will be added after publication."
-title: "Deployment-Aware Shared DQN for Rel-19 Coverage and Capacity Optimization"
+title: "Shared Deep Q-Learning for Multi-Cell Coverage Optimization: Transfer and Action-Screening Limits"
 type: software
 authors:
   - family-names: "Kumar"
     given-names: "Dharmendra"
-version: "1.0.0-submission"
-date-released: "2026-08-02"
+version: "2.0.0-vcc-revision"
 repository-code: "https://github.com/dharmendra041983/rel19-cco-shared-dqn"
 license: "BSD-3-Clause"
 keywords:
@@ -14,5 +13,6 @@ keywords:
   - "NG-RAN"
   - "coverage and capacity optimization"
   - "deep reinforcement learning"
-  - "safe reinforcement learning"
-  - "SON coexistence"
+  - "topology transfer"
+  - "action screening"
+  - "value decomposition"

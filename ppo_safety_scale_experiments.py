@@ -72,9 +72,10 @@ class PPO:
         return probs, values[:, 0]
 
     def act(self, states: np.ndarray, deterministic: bool = True) -> np.ndarray:
-        probs, _ = self.distribution(states)
+        logits, _ = self.actor.forward(states)
         if deterministic:
-            return np.argmax(probs, axis=1)
+            return np.argmax(logits, axis=1)
+        probs = self._softmax(logits)
         return np.asarray([
             self.rng.choice(base.N_ACT, p=p) for p in probs
         ], dtype=int)
@@ -120,7 +121,8 @@ class PPO:
                 active = np.where(adv >= 0.0,
                                   ratio <= 1.0 + clip,
                                   ratio >= 1.0 - clip)
-                dloss_dlogp = np.where(active, -adv * ratio / bsz, 0.0)
+                # MLP.backward performs the batch mean exactly once.
+                dloss_dlogp = np.where(active, -adv * ratio, 0.0)
                 onehot = np.zeros_like(probs)
                 onehot[np.arange(bsz), a] = 1.0
                 dout_actor = dloss_dlogp[:, None] * (onehot - probs)
@@ -128,13 +130,13 @@ class PPO:
                 # Entropy bonus: dH/dz_j = -p_j(log p_j + H).
                 log_probs = np.log(np.maximum(probs, 1e-12))
                 entropy = -np.sum(probs * log_probs, axis=1, keepdims=True)
-                dout_actor += (ent_coef / bsz) * probs * (log_probs + entropy)
+                dout_actor += ent_coef * probs * (log_probs + entropy)
                 grads = self.actor.backward(actor_acts, dout_actor)
                 self.actor_opt.step(self.actor.params(), grads)
 
                 values, critic_acts = self.critic.forward(s)
                 err = values[:, 0] - ret
-                dout_critic = (vf_coef * err / bsz)[:, None]
+                dout_critic = (vf_coef * err)[:, None]
                 grads_v = self.critic.backward(critic_acts, dout_critic)
                 self.critic_opt.step(self.critic.params(), grads_v)
 
